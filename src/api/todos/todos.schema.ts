@@ -4,11 +4,11 @@ export const createTodoSchema = z.object({
   body: z.object({
     description: z
       .string({
-        required_error: 'First name is required',
+        required_error: 'Description is required.',
       })
-      .min(3, 'Description should at least contain 1 characters.'),
+      .min(3, 'Description should at least contain 3 characters.'),
     done: z.boolean({
-      required_error: 'Done is required',
+      required_error: 'Done is required.',
     }),
   }),
 });
