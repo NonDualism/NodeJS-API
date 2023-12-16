@@ -1,10 +1,25 @@
-import * as z from 'zod';
+import { getModelForClass } from '@typegoose/typegoose';
+import { prop } from 'typegoose';
+import mongoose from 'mongoose';
 
-const Todo = z.object({
-  description: z.string().min(1),
-  done: z.boolean(),
+// @modelOptions
+// export class Todo {
+//   @prop({ required: true, unique: true })
+//   description: String;
+
+//   @prop({ required: true, default: false })
+//   done: Boolean;
+// }
+
+// export const TodoModel = getModelForClass(Todo);
+
+const todoSchema = new mongoose.Schema({
+  description: {
+    type: String,
+  },
+  done: {
+    type: Boolean,
+  },
 });
 
-type Todo = z.infer<typeof Todo>;
-
-export default Todo;
+export const Todo = mongoose.model('Todo', todoSchema);

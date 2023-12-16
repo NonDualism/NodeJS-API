@@ -1,15 +1,9 @@
-import { Router, Request, Response } from 'express';
-import Todo from './todos.model';
-
+import { Router } from 'express';
+import { createOne } from '../../controllers/todos.controllers';
+import validateRequest from '../../middlewares/validateRequest';
+import { createTodoSchema } from './todos.schema';
 const router = Router();
 
-router.get('/', (req: Request, res: Response<Todo[]>) => {
-  res.json([
-    {
-      description: 'first todo',
-      done: true,
-    },
-  ]);
-});
+router.post('/create', createOne);
 
 export default router;
